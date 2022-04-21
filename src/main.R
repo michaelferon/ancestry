@@ -95,8 +95,20 @@ pdf(file='../figs/ethnic-similarity.pdf', height=7, width=14)
 dev.off()
 
 
+# PCA.
+do.scale <- FALSE
+X <- as.matrix(df[-1]); Y <- scale(X, scale=do.scale)
+rownames(X) <- df$Name; rownames(Y) <- df$Name
+eig <- eigen(t(Y) %*% Y)
+pc.out <- prcomp(X, scale=do.scale)
 
-mf <- read_delim(file='../data/michael-feron.txt', delim='\t', comment='#') %>%
-  mutate_at(c('chromosome', 'allele1', 'allele2'), as.factor)
+v.exp <- (cumsum(eig$values) / sum(eig$values))[2] %>% round(digits=2)
+biplot(pc.out, scale=1, cex=0.5, xlab=expression(z[1]), ylab=expression(z[2]))
+legend('topright', paste0('% Variance: ', v.exp), pch=19, col='black', pt.cex=0.5)
+
+
+
+# mf <- read_delim(file='../data/michael-feron.txt', delim='\t', comment='#') %>%
+#   mutate_at(c('chromosome', 'allele1', 'allele2'), as.factor)
 
 
