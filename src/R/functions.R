@@ -45,16 +45,16 @@ save.pie.chart <- function(df, file, png=FALSE) {
   cols[regions %in% c('Finland', 'Sardinia')] <- c('#FFFFFF', '#000000')
 
   if (png) {
-    png(file=file, height=5000, width=2000)
-      cex=2.5
-      par(mfrow=c(6, 2), mar=c(5, 0, 4, 7) + 0.1)
+    png(file=file, height=5000, width=2500)
+      cex=3.5
+      par(mfrow=c(6, 2), mar=c(6, 0, 4, 10) + 0.1)
       for (n in 1:nrow(df)) {
         temp <- df %>%
           slice(n)
         inds <- which(temp[-1] != 0)
         pie(as.numeric(temp[-1][inds]), labels=names(temp)[-1][inds],
             col=cols[inds], radius=0.8, cex=cex, cex.main=cex)
-        title(temp[1], cex.main=cex, line=-4)
+        title(temp[1], cex.main=1.15*cex, line=-3.5)
       }
     dev.off()
   } else {
@@ -84,15 +84,17 @@ plot.ethnic.similarity <- function(df, file, png=FALSE) {
   # Ethnic similarity matrices.
   if (png) {
     png(file=file, height=2000, width=4000)
-    cex=2.75
+    cex <- 4.5; cl.offset <- 2; cl.length <- 8; tl.offset <- 0.5
       par(mfrow=c(1, 2), oma=c(0, 0, 0, 0))
       range <- range(c(family.cor.adj, hellinger))
       corrplot(family.cor.adj, method='color', type='lower', is.corr=TRUE, diag=FALSE,
-               tl.col='black', tl.srt=45, mar=c(0, 0, 2, 0), col.lim=range,
-               title='Correlation', cex.main=cex, tl.cex=cex, cl.cex=cex)
+               tl.col='black', tl.srt=45, mar=c(0, 0, 4, 0), col.lim=range,
+               title='Correlation', cex.main=1.15*cex, tl.cex=cex, cl.cex=cex,
+               cl.offset=cl.offset, cl.length=cl.length, tl.offset=tl.offset)
       corrplot(hellinger, method='color', type='lower', is.corr=FALSE, diag=FALSE,
-               tl.col='black', tl.srt=45, mar=c(0, 0, 2, 0),
-               title='Hellinger Distance', cex.main=cex, tl.cex=cex, cl.cex=cex)
+               tl.col='black', tl.srt=45, mar=c(0, 0, 4, 0),
+               title='Hellinger Distance', cex.main=1.15*cex, tl.cex=cex, cl.cex=cex,
+               cl.offset=cl.offset, cl.length=cl.length, tl.offset=tl.offset)
     dev.off()
   } else {
     pdf(file=file, height=7, width=14)
@@ -111,44 +113,59 @@ plot.ethnic.similarity <- function(df, file, png=FALSE) {
 }
 
 # PCA biplots.
-get.pca.biplot <- function(df, do.scale=FALSE, title = 'Un-Standardized') {
-  X <- as.matrix(df[-1]); Y <- scale(X, scale=do.scale)
-  rownames(X) <- df$name; rownames(Y) <- df$name
-  eig <- eigen(t(Y) %*% Y)
-  pc.out <- prcomp(X, scale=do.scale)
+get.pca.biplot <- function(X, do.scale=FALSE, title='Un-Standardized') {
+  rownames(X) <- sapply(str_split(rownames(X), ' '), function(x) x[1])
+  pc <- prcomp(X, scale=do.scale)
+  pc$x[, 2] <- -pc$x[, 2]; pc$rotation[, 2] <- -pc$rotation[, 2]
   
-  v.exp <- (cumsum(eig$values) / sum(eig$values))[2] %>% round(digits=2)
-  biplot(pc.out, scale=1, cex=0.5, xlab=expression(z[1]), ylab=expression(z[2]), main=title)
-  legend('topright', paste0('% Variance: ', v.exp), pch=19, col='black', pt.cex=0.5)
+  g <- autoplot(pc, data=X, label=TRUE, shape=FALSE, loadings=TRUE, loadings.label=TRUE) +
+    theme_bw() +
+    ggtitle(title)
+  return(g)
 }
-
-feron.biplots <- function(df, file) {
-  pdf(file=file, height=7, width=14)
-    par(mfrow=c(1, 2))
-    get.pca.biplot(df, do.scale=TRUE, 'Standardized')
-    get.pca.biplot(df)
-  dev.off()
+feron.biplots <- function(X, file, png=FALSE) {
+  g <- get.pca.biplot(X)
+  q <- get.pca.biplot(X, do.scale=TRUE, 'Standardized')
+  
+  device=ifelse(png, 'png', 'pdf')
+  ggsave(file, plot = g + q, height=7, width=14, device=device, units='in', scale=1.00)
 }
 
 # Hierarchical clustering dendrograms.
-feron.clust <- function(df, k, file) {
-  X <- as.matrix(df[-1])
-  rownames(X) <- df$name
+feron.clust <- function(X, k, file, png=FALSE) {
   family.cor.adj <- my.outer(t(X), adj.cor)
   
-  pdf(file=file, height=7, width=11)
-    par(mfrow=c(1, 2), mar=c(7, 4, 7, 2) + 0.1)
-    clust.dist <- as.dendrogram(hclust(dist(X), method='complete')) %>%
-      color_branches(k = k) %>%
-      set("branches_lty", c(1,2,1,2)) %>%
-      color_labels(k = k)
-    clust.corr <- as.dendrogram(hclust(as.dist(1 - family.cor.adj), method='complete')) %>%
-      color_branches(k = k) %>%
-      set("branches_lty", c(1,2,1,2)) %>%
-      color_labels(k = k)
-    plot(clust.dist, main='Euclidean Metric')
-    plot(clust.corr, main='Correlation-based Metric')
-    mtext(paste0('Complete-Linkage Hierarchical Clustering, k = ', k),
-          side=3, line=5.5, adj=3.0, cex=1.5)
-  dev.off()
+  if (png) {
+    png(file=file, height=7, width=14, units='in', res=500)
+      par(mfrow=c(1, 2), mar=c(6, 4, 3, 2) + 0.1)
+      clust.dist <- as.dendrogram(hclust(dist(X), method='complete')) %>%
+        color_branches(k = k) %>%
+        set("branches_lty", c(1,2,1,2)) %>%
+        color_labels(k = k)
+      clust.corr <- as.dendrogram(hclust(as.dist(1 - family.cor.adj), method='complete')) %>%
+        color_branches(k = k) %>%
+        set("branches_lty", c(1,2,1,2)) %>%
+        color_labels(k = k)
+      plot(clust.dist, main='Euclidean Metric')
+      plot(clust.corr, main='Correlation-based Metric')
+    dev.off()
+  } else {
+    pdf(file=file, height=7, width=11)
+      par(mfrow=c(1, 2), mar=c(7, 4, 7, 2) + 0.1)
+      clust.dist <- as.dendrogram(hclust(dist(X), method='complete')) %>%
+        color_branches(k = k) %>%
+        set("branches_lty", c(1,2,1,2)) %>%
+        color_labels(k = k)
+      clust.corr <- as.dendrogram(hclust(as.dist(1 - family.cor.adj), method='complete')) %>%
+        color_branches(k = k) %>%
+        set("branches_lty", c(1,2,1,2)) %>%
+        color_labels(k = k)
+      plot(clust.dist, main='Euclidean Metric')
+      plot(clust.corr, main='Correlation-based Metric')
+      mtext(paste0('Complete-Linkage Hierarchical Clustering, k = ', k),
+            side=3, line=5.5, adj=3.0, cex=1.5)
+    dev.off()
+  }
+  
+  
 }
