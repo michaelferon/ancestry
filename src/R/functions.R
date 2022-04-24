@@ -83,18 +83,15 @@ plot.ethnic.similarity <- function(df, file, png=FALSE) {
   
   # Ethnic similarity matrices.
   if (png) {
-    png(file=file, height=2000, width=4000)
-    cex <- 4.5; cl.offset <- 2; cl.length <- 8; tl.offset <- 0.5
+    png(file=file, height=7, width=14, units='in', res=500)
       par(mfrow=c(1, 2), oma=c(0, 0, 0, 0))
       range <- range(c(family.cor.adj, hellinger))
       corrplot(family.cor.adj, method='color', type='lower', is.corr=TRUE, diag=FALSE,
-               tl.col='black', tl.srt=45, mar=c(0, 0, 4, 0), col.lim=range,
-               title='Correlation', cex.main=1.15*cex, tl.cex=cex, cl.cex=cex,
-               cl.offset=cl.offset, cl.length=cl.length, tl.offset=tl.offset)
+               tl.col='black', tl.srt=45, mar=c(0, 0, 2, 0), col.lim=range,
+               title='Correlation', cex.main=1.15)
       corrplot(hellinger, method='color', type='lower', is.corr=FALSE, diag=FALSE,
-               tl.col='black', tl.srt=45, mar=c(0, 0, 4, 0),
-               title='Hellinger Distance', cex.main=1.15*cex, tl.cex=cex, cl.cex=cex,
-               cl.offset=cl.offset, cl.length=cl.length, tl.offset=tl.offset)
+               tl.col='black', tl.srt=45, mar=c(0, 0, 2, 0),
+               title='Hellinger Distance', cex.main=1.15)
     dev.off()
   } else {
     pdf(file=file, height=7, width=14)
@@ -166,6 +163,27 @@ feron.clust <- function(X, k, file, png=FALSE) {
             side=3, line=5.5, adj=3.0, cex=1.5)
     dev.off()
   }
+}
+
+feron.phylo <- function(X, type='fan', file) {
+  Y <- X
+  rownames(Y) <- sapply(str_split(rownames(X), ' '), function(x) x[1])
+  clust.dist <- as.dendrogram(hclust(dist(Y), method='complete'))
+  clust.corr <- as.dendrogram(hclust(as.dist(1 - my.outer(t(Y), f.hellinger)), method='complete'))
   
+  cols <- sapply(str_split(c('202 73 108', '118 126 22', '21 149 129', '120 106 213'), ' '),
+                 function(x) rgb(x[1], x[2], x[3], maxColorValue=255))
+  cols.dist <- cols[cutree(clust.dist, 4)]
+  cols.corr <- cols[cutree(clust.corr, 4)]
   
+  png(file=file, width=14, height=7.64, units='in', res=500)
+    par(mfrow=c(1, 2), mar=c(0, 0, 0, 0), oma=c(0, 2, 0, 2))
+    cex <- 0.9
+    plot(as.phylo(clust.dist), type=type,
+         tip.color=cols.dist, edge.lty=2, cex=cex)
+    title('Euclidean Distance Metric', line=-1.5)
+    plot(as.phylo(clust.corr), type=type,
+         tip.color=cols.corr, edge.lty=2, cex=cex)
+    title('Hellinger Distance Metric', line=-1.5)
+  dev.off()
 }

@@ -7,10 +7,16 @@ figs_pdf = $(FIGS)/pie.pdf $(FIGS)/ethnic-similarity.pdf $(FIGS)/pca-biplots.pdf
 data = ./data/family.csv
 
 
-all : $(figs_pdf) #./docs/index.html
+all : $(figs_pdf)
 
 $(figs_pdf) : ./src/R/main.R ./src/R/functions.R $(data)
 	$(Rscript) $< > /dev/null 2>&1
 
-# ./docs/index.html : $(data)
-# 	./src/python/html.py > $@
+
+.PHONY : database view connect
+database : $(data)
+	@mariadb ancestry -A < ./src/sql/init.sql && echo 'Database updated.'
+view :
+	@mariadb ancestry -A --execute="SELECT * FROM data;"
+connect:
+	@mariadb ancestry -A

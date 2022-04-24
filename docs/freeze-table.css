@@ -26,7 +26,7 @@
 .first {
   left: 0;
   position: sticky;
-  background: #f2f2f2;
+  background: #c9c9c9;
   text-align: left;
   z-index: 3;
   border-right: thin solid #dddddd;
@@ -39,7 +39,7 @@ thead th {
   min-height: 30px;
   height: 30px;
   text-align: center;
-  background: #f2f2f2;
+  background: #c9c9c9;
   border-bottom: thin solid #dddddd;
 }
 tr:nth-child(even) {
@@ -55,7 +55,6 @@ th, td {
 tr {
   min-height: 25px;
   height: 25px;
-  border-bottom: thin solid #dddddd;
 }
 img {
   width: 90%;

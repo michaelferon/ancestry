@@ -7,16 +7,17 @@ library(colorspace)   # More color schemes.
 library(viridis)      # More color schemes.
 library(corrplot)     # Correlation plots.
 library(dendextend)   # Dendrograms.
+library(ape)          # Phylogenetic dendrograms.
 library(ggplot2)      # Plotting.
 library(patchwork)    # Side-by-side ggplots.
 library(ggfortify)    # ggplot PCA.
 library(readr)        # File input.
 library(stringr)      # String manipulation.
-library(tidyr)        # Data cleaning (separate).
+library(tidyr)        # Data cleaning, tidyr::separate().
 library(dplyr)        # Data manipulation.
 
 
-# Get family data.
+# Get familial data.
 df <- get.data('./data/family.csv')
 X <- matrix(as.matrix(df[-1]), ncol=ncol(df[-1]),
             dimnames=list(df$name, colnames(df[-1])))
@@ -37,3 +38,11 @@ feron.biplots(X, './docs/figs/pca-biplots.png', png=TRUE)
 feron.clust(X, 3, './figs/clust-k3.pdf')
 feron.clust(X, 4, './figs/clust-k4.pdf')
 feron.clust(X, 4, './docs/figs/clust-k4.png', png=TRUE)
+
+## TEST
+source('./src/R/functions.R')
+feron.phylo(X, type='unrooted', file='./docs/figs/phylo.png')
+
+
+
+
