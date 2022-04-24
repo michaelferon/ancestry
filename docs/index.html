@@ -4,32 +4,33 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Feron Family</title>
-    <link rel="stylesheet" type="text/css" href="freeze-table.css">
+    <link rel="stylesheet" type="text/css" href="table.css">
+    <script type="text/javascript" src="table-sort.js"></script>
   </head>
   <body>
     <h1 style="text-align: center;">Feron Family Ethnic Summary</h1>
     <div style="width: 100%; height: 600px; max-height: 100%; overflow: auto">
-      <table class="freeze-table" width="600px">
+      <table id="table" class="table" width="600px">
         <thead>
           <tr>
-            <th class="first" scope="row">Region</th>
-            <th>Michele Noonan</th>
-            <th>Gregory Feron</th>
-            <th>David Feron</th>
-            <th>Marilyn Feron</th>
-            <th>Kathy Mortenson</th>
-            <th>Eileen Shanley</th>
-            <th>Emily Mortenson</th>
-            <th>Michael Feron</th>
-            <th>Josie Feron</th>
-            <th>Heather Paul</th>
-            <th>Colton Paul</th>
-            <th>Cody Paul</th>
+            <th class="first" scope="row" data-type="number"><button class="table__header">Region</button></th>
+            <th data-type="number"><button class="table__header">Michele Noonan</button></th>
+            <th data-type="number"><button class="table__header">Gregory Feron</button></th>
+            <th data-type="number"><button class="table__header">David Feron</button></th>
+            <th data-type="number"><button class="table__header">Marilyn Feron</button></th>
+            <th data-type="number"><button class="table__header">Kathy Mortenson</button></th>
+            <th data-type="number"><button class="table__header">Eileen Shanley</button></th>
+            <th data-type="number"><button class="table__header">Emily Mortenson</button></th>
+            <th data-type="number"><button class="table__header">Michael Feron</button></th>
+            <th data-type="number"><button class="table__header">Josie Feron</button></th>
+            <th data-type="number"><button class="table__header">Heather Paul</button></th>
+            <th data-type="number"><button class="table__header">Colton Paul</button></th>
+            <th data-type="number"><button class="table__header">Cody Paul</button></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th class="col-id-no-white" scope="row">England & NW Europe</th>
+            <td scope="row">England & NW Europe</td>
             <td>39</td>
             <td>40</td>
             <td>66</td>
@@ -44,7 +45,7 @@
             <td>34</td>
           </tr>
           <tr>
-            <th class="col-id-no-gray" scope="row">Ireland</th>
+            <td scope="row">Ireland</td>
             <td>3</td>
             <td>8</td>
             <td>7</td>
@@ -59,7 +60,7 @@
             <td>2</td>
           </tr>
           <tr>
-            <th class="col-id-no-white" scope="row">Scotland</th>
+            <td scope="row">Scotland</td>
             <td>8</td>
             <td>11</td>
             <td>6</td>
@@ -74,7 +75,7 @@
             <td>35</td>
           </tr>
           <tr>
-            <th class="col-id-no-gray" scope="row">Wales</th>
+            <td scope="row">Wales</td>
             <td>4</td>
             <td>2</td>
             <td>0</td>
@@ -89,7 +90,7 @@
             <td>0</td>
           </tr>
           <tr>
-            <th class="col-id-no-white" scope="row">Germanic Europe</th>
+            <td scope="row">Germanic Europe</td>
             <td>9</td>
             <td>8</td>
             <td>6</td>
@@ -104,7 +105,7 @@
             <td>11</td>
           </tr>
           <tr>
-            <th class="col-id-no-gray" scope="row">Norway</th>
+            <td scope="row">Norway</td>
             <td>13</td>
             <td>16</td>
             <td>2</td>
@@ -119,7 +120,7 @@
             <td>3</td>
           </tr>
           <tr>
-            <th class="col-id-no-white" scope="row">Sweden & Denmark</th>
+            <td scope="row">Sweden & Denmark</td>
             <td>7</td>
             <td>5</td>
             <td>4</td>
@@ -134,7 +135,7 @@
             <td>4</td>
           </tr>
           <tr>
-            <th class="col-id-no-gray" scope="row">Finland</th>
+            <td scope="row">Finland</td>
             <td>0</td>
             <td>0</td>
             <td>0</td>
@@ -149,7 +150,7 @@
             <td>0</td>
           </tr>
           <tr>
-            <th class="col-id-no-white" scope="row">Eastern Europe & Russia</th>
+            <td scope="row">Eastern Europe & Russia</td>
             <td>15</td>
             <td>7</td>
             <td>9</td>
@@ -164,7 +165,7 @@
             <td>2</td>
           </tr>
           <tr>
-            <th class="col-id-no-gray" scope="row">European Jewish</th>
+            <td scope="row">European Jewish</td>
             <td>0</td>
             <td>0</td>
             <td>0</td>
@@ -179,7 +180,7 @@
             <td>5</td>
           </tr>
           <tr>
-            <th class="col-id-no-white" scope="row">Baltics</th>
+            <td scope="row">Baltics</td>
             <td>2</td>
             <td>2</td>
             <td>0</td>
@@ -194,7 +195,7 @@
             <td>1</td>
           </tr>
           <tr>
-            <th class="col-id-no-gray" scope="row">Sardinia</th>
+            <td scope="row">Sardinia</td>
             <td>0</td>
             <td>1</td>
             <td>0</td>
@@ -209,7 +210,7 @@
             <td>0</td>
           </tr>
           <tr>
-            <th class="col-id-no-white" scope="row">Indigenous North America</th>
+            <td scope="row">Indigenous North America</td>
             <td>0</td>
             <td>0</td>
             <td>0</td>
@@ -224,7 +225,7 @@
             <td>2</td>
           </tr>
           <tr>
-            <th class="col-id-no-gray" scope="row">Northern Philippines</th>
+            <td scope="row">Northern Philippines</td>
             <td>0</td>
             <td>0</td>
             <td>0</td>

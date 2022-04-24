@@ -1,4 +1,5 @@
-.freeze-table {
+/* Table */
+.table {
   padding: 0;
   height: 100%;
   border-collapse: separate;
@@ -7,22 +8,18 @@
   margin-left: auto;
   margin-right: auto;
 }
-.col-id-no-white {
-  left: 0;
-  z-index: 1;
-  position: sticky;
-  background: white;
-  text-align: left;
-  border-right: thin solid #dddddd;
+
+/* Button */
+.table__header {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: times;
+  font-weight: bold;
 }
-.col-id-no-gray {
-  left: 0;
-  z-index: 1;
-  position: sticky;
-  background: #f2f2f2;
-  text-align: left;
-  border-right: thin solid #dddddd;
-}
+
+/* Top left cell */
 .first {
   left: 0;
   position: sticky;
@@ -32,6 +29,14 @@
   border-right: thin solid #dddddd;
   border-bottom: thin solid #dddddd;
 }
+
+/* Auto-scaling images */
+img {
+  width: 90%;
+  max-width: 1500px;
+  object-fit: contain;
+}
+
 thead th {
   top: 0;
   position: sticky;
@@ -42,22 +47,39 @@ thead th {
   background: #c9c9c9;
   border-bottom: thin solid #dddddd;
 }
-tr:nth-child(even) {
-  background: #f2f2f2;
+
+tbody tr:nth-child(odd) td:first-of-type {
+  left: 0;
+  z-index: 1;
+  position: sticky;
+  background: white;
+  text-align: left;
+  border-right: thin solid #dddddd;
 }
+
+tbody tr:nth-child(even) td:first-of-type {
+  left: 0;
+  z-index: 1;
+  position: sticky;
+  background: #f2f2f2;
+  text-align: left;
+  border-right: thin solid #dddddd;
+}
+
 tr:nth-child(odd) {
   background: white;
 }
+
+tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
 th, td {
   padding: 8px 16px;
   text-align: center;
 }
+
 tr {
   min-height: 25px;
   height: 25px;
-}
-img {
-  width: 90%;
-  max-width: 1500px;
-  object-fit: contain;
 }

@@ -42,7 +42,3 @@ feron.clust(X, 4, './docs/figs/clust-k4.png', png=TRUE)
 ## TEST
 source('./src/R/functions.R')
 feron.phylo(X, type='unrooted', file='./docs/figs/phylo.png')
-
-
-
-
