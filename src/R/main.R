@@ -23,22 +23,21 @@ X <- matrix(as.matrix(df[-1]), ncol=ncol(df[-1]),
             dimnames=list(df$name, colnames(df[-1])))
 
 # Ethnicity pie chart for each individual.
-save.pie.chart(df, './figs/pie.pdf')
-save.pie.chart(df, './docs/figs/pie.png', png=TRUE)
+save.pie.chart(df, './img/pie.pdf')
+save.pie.chart(df, './docs/img/pie.png', png=TRUE)
 
 # Plot ethnic similarity matrix.
-plot.ethnic.similarity(df, './figs/ethnic-similarity.pdf')
-plot.ethnic.similarity(df, './docs/figs/ethnic-similarity.png', png=TRUE)
+plot.ethnic.similarity(df, './img/ethnic-similarity.pdf')
+plot.ethnic.similarity(df, './docs/img/ethnic-similarity.png', png=TRUE)
 
 # PCA.
-feron.biplots(X, './figs/pca-biplots.pdf')
-feron.biplots(X, './docs/figs/pca-biplots.png', png=TRUE)
+feron.biplots(X, './img/pca-biplots.pdf')
+feron.biplots(X, './docs/img/pca-biplots.png', png=TRUE)
 
 # Hierarchical clustering.
-feron.clust(X, 3, './figs/clust-k3.pdf')
-feron.clust(X, 4, './figs/clust-k4.pdf')
-feron.clust(X, 4, './docs/figs/clust-k4.png', png=TRUE)
+feron.clust(X, 3, './img/clust-k3.pdf')
+feron.clust(X, 4, './img/clust-k4.pdf')
+feron.clust(X, 4, './docs/img/clust-k4.png', png=TRUE)
 
-## TEST
-source('./src/R/functions.R')
-feron.phylo(X, type='unrooted', file='./docs/figs/phylo.png')
+# Phylogenetic style hierarchical clustering.
+feron.phylo(X, type='unrooted', file='./docs/img/phylo.png')
