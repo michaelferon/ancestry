@@ -1,10 +1,9 @@
 #! /usr/bin/env python
 
 import pandas as pd
+df = pd.read_csv("./data/family.csv", index_col="Name")
 
-df = pd.read_csv('./data/family.csv')
-df.set_index('Name', inplace=True)
-df = df.transpose()
-(m, n) = df.shape
-
-df.transpose().to_json('./data/family.json', indent=4)
+with open ("./data/family.json", "w") as f: # General json data object.
+    f.write(df.to_json(indent=4))
+with open("./docs/js/data.js", "w") as f:   # json object as js var.
+    f.write("var data = " + df.to_json(indent=4) + ";\n")

@@ -4,7 +4,7 @@
   height: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  /*box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);*/
   margin-left: auto;
   margin-right: auto;
 }
@@ -80,7 +80,7 @@ tr {
 
 /* Auto-scaling images */
 img {
-  width: 90%;
+  width: 95%;
   max-width: 1500px;
   object-fit: contain;
 }
@@ -90,8 +90,10 @@ body {
 }
 
 #table-div {
-  width: 100%;
+  width: 90%;
   height: 600px;
   max-height: 100%;
   overflow: auto;
+  margin-left: auto;
+  margin-right: auto;
 }

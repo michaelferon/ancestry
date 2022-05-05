@@ -1,203 +1,8 @@
+/* 
+    Generate table and fill with data.
+    This function accesses global 'var data' from js/data.js.
+ */
 function generate_table() {
-    const data = {
-        "England & NW Europe":{
-            "Michele Noonan":39,
-            "Gregory Feron":40,
-            "David Feron":66,
-            "Marilyn Feron":4,
-            "Kathy Mortenson":3,
-            "Eileen Shanley":0,
-            "Emily Mortenson":13,
-            "Michael Feron":40,
-            "Josie Feron":31,
-            "Heather Paul":19,
-            "Colton Paul":47,
-            "Cody Paul":34
-        },
-        "Ireland":{
-            "Michele Noonan":3,
-            "Gregory Feron":8,
-            "David Feron":7,
-            "Marilyn Feron":72,
-            "Kathy Mortenson":82,
-            "Eileen Shanley":71,
-            "Emily Mortenson":39,
-            "Michael Feron":30,
-            "Josie Feron":43,
-            "Heather Paul":5,
-            "Colton Paul":6,
-            "Cody Paul":2
-        },
-        "Scotland":{
-            "Michele Noonan":8,
-            "Gregory Feron":11,
-            "David Feron":6,
-            "Marilyn Feron":21,
-            "Kathy Mortenson":8,
-            "Eileen Shanley":20,
-            "Emily Mortenson":38,
-            "Michael Feron":22,
-            "Josie Feron":12,
-            "Heather Paul":38,
-            "Colton Paul":4,
-            "Cody Paul":35
-        },
-        "Wales":{
-            "Michele Noonan":4,
-            "Gregory Feron":2,
-            "David Feron":0,
-            "Marilyn Feron":2,
-            "Kathy Mortenson":4,
-            "Eileen Shanley":7,
-            "Emily Mortenson":0,
-            "Michael Feron":0,
-            "Josie Feron":0,
-            "Heather Paul":1,
-            "Colton Paul":0,
-            "Cody Paul":0
-        },
-        "Germanic Europe":{
-            "Michele Noonan":9,
-            "Gregory Feron":8,
-            "David Feron":6,
-            "Marilyn Feron":0,
-            "Kathy Mortenson":0,
-            "Eileen Shanley":2,
-            "Emily Mortenson":0,
-            "Michael Feron":3,
-            "Josie Feron":6,
-            "Heather Paul":22,
-            "Colton Paul":11,
-            "Cody Paul":11
-        },
-        "Norway":{
-            "Michele Noonan":13,
-            "Gregory Feron":16,
-            "David Feron":2,
-            "Marilyn Feron":0,
-            "Kathy Mortenson":3,
-            "Eileen Shanley":0,
-            "Emily Mortenson":1,
-            "Michael Feron":2,
-            "Josie Feron":6,
-            "Heather Paul":0,
-            "Colton Paul":6,
-            "Cody Paul":3
-        },
-        "Sweden & Denmark":{
-            "Michele Noonan":7,
-            "Gregory Feron":5,
-            "David Feron":4,
-            "Marilyn Feron":1,
-            "Kathy Mortenson":0,
-            "Eileen Shanley":0,
-            "Emily Mortenson":8,
-            "Michael Feron":0,
-            "Josie Feron":2,
-            "Heather Paul":9,
-            "Colton Paul":11,
-            "Cody Paul":4
-        },
-        "Finland":{
-            "Michele Noonan":0,
-            "Gregory Feron":0,
-            "David Feron":0,
-            "Marilyn Feron":0,
-            "Kathy Mortenson":0,
-            "Eileen Shanley":0,
-            "Emily Mortenson":1,
-            "Michael Feron":0,
-            "Josie Feron":0,
-            "Heather Paul":0,
-            "Colton Paul":0,
-            "Cody Paul":0
-        },
-        "Eastern Europe & Russia":{
-            "Michele Noonan":15,
-            "Gregory Feron":7,
-            "David Feron":9,
-            "Marilyn Feron":0,
-            "Kathy Mortenson":0,
-            "Eileen Shanley":0,
-            "Emily Mortenson":0,
-            "Michael Feron":3,
-            "Josie Feron":0,
-            "Heather Paul":5,
-            "Colton Paul":3,
-            "Cody Paul":2
-        },
-        "European Jewish":{
-            "Michele Noonan":0,
-            "Gregory Feron":0,
-            "David Feron":0,
-            "Marilyn Feron":0,
-            "Kathy Mortenson":0,
-            "Eileen Shanley":0,
-            "Emily Mortenson":0,
-            "Michael Feron":0,
-            "Josie Feron":0,
-            "Heather Paul":0,
-            "Colton Paul":8,
-            "Cody Paul":5
-        },
-        "Baltics":{
-            "Michele Noonan":2,
-            "Gregory Feron":2,
-            "David Feron":0,
-            "Marilyn Feron":0,
-            "Kathy Mortenson":0,
-            "Eileen Shanley":0,
-            "Emily Mortenson":0,
-            "Michael Feron":0,
-            "Josie Feron":0,
-            "Heather Paul":1,
-            "Colton Paul":0,
-            "Cody Paul":1
-        },
-        "Sardinia":{
-            "Michele Noonan":0,
-            "Gregory Feron":1,
-            "David Feron":0,
-            "Marilyn Feron":0,
-            "Kathy Mortenson":0,
-            "Eileen Shanley":0,
-            "Emily Mortenson":0,
-            "Michael Feron":0,
-            "Josie Feron":0,
-            "Heather Paul":0,
-            "Colton Paul":0,
-            "Cody Paul":0
-        },
-        "Indigenous North America":{
-            "Michele Noonan":0,
-            "Gregory Feron":0,
-            "David Feron":0,
-            "Marilyn Feron":0,
-            "Kathy Mortenson":0,
-            "Eileen Shanley":0,
-            "Emily Mortenson":0,
-            "Michael Feron":0,
-            "Josie Feron":0,
-            "Heather Paul":0,
-            "Colton Paul":2,
-            "Cody Paul":2
-        },
-        "Northern Philippines":{
-            "Michele Noonan":0,
-            "Gregory Feron":0,
-            "David Feron":0,
-            "Marilyn Feron":0,
-            "Kathy Mortenson":0,
-            "Eileen Shanley":0,
-            "Emily Mortenson":0,
-            "Michael Feron":0,
-            "Josie Feron":0,
-            "Heather Paul":0,
-            "Colton Paul":2,
-            "Cody Paul":1
-        }
-    };
-
     function set_th(label) {
         let th = document.createElement("th");
         th.setAttribute("data-type", "number");
@@ -233,25 +38,27 @@ function generate_table() {
         cell.appendChild(text);
     }
 
-    function set_tbody(table, regions, people) {
+    function set_tbody(table, regions) {
         let tbody = table.createTBody();
-        for (region of regions) {
+        regions.forEach( region => {
             let row = tbody.insertRow();
             insert_td(row, region);
             Object.values(data[region]).forEach( person => {
                 insert_td(row, person);
             });
-        }
+        });
     }
 
     const regions = Object.keys(data);
     const people = Object.keys(data[regions[0]]);
     let table = document.getElementById("table");
     set_thead(table, people);
-    set_tbody(table, regions, people);
+    set_tbody(table, regions);
 }
 
-
+/* 
+    Fill body with images.
+ */
 function set_images() {
     class Image {
         constructor(src, title, include_header = true) {
@@ -292,81 +99,107 @@ function set_images() {
         body.appendChild(div);
     });
 }
-
 generate_table();
 set_images();
-
 
 
 /* 
     Sort table by clicking column headers.
     See https://htmldom.dev/sort-a-table-by-clicking-its-headers/
  */
-const table = document.getElementById('table');
-const headers = table.querySelectorAll('th');
-const tableBody = table.querySelector('tbody');
-const rows = tableBody.querySelectorAll('tr');
+function sortTableByColumn() {
+    const table = document.getElementById("table");
+    const headers = table.querySelectorAll("th");
+    const tableBody = table.querySelector("tbody");
+    const rows = tableBody.querySelectorAll("tr");
+    
+    // Array for tracking sort direction (will flip-flop for each column).
+    const directions = Array(headers.length).fill("");
+    
+    // Returns cell content as Number. Strings return 0 (to preserve original order).
+    function transform(index, content) {
+        const type = headers[index].getAttribute("data-type");
+        return type === "number" ? Number(content) : 0;
+    };
+    
+    function sortColumn(index) {
+        // Get the sort direction (defaults to descending on first sort).
+        const direction = directions[index] || "desc";
+    
+        // For use in newRows.sort function.
+        const multiplier = direction === "asc" ? 1 : -1;
+    
+        const newRows = Array.from(rows);
+        newRows.sort(function (rowA, rowB) {
+            const cellA = rowA.querySelectorAll("td")[index].innerHTML;
+            const cellB = rowB.querySelectorAll("td")[index].innerHTML;
+    
+            const a = transform(index, cellA);
+            const b = transform(index, cellB);
+    
+            return multiplier * (a > b ? 1 : a < b ? -1 : 0);
+        });
+    
+        // Remove old rows.
+        rows.forEach( row => {
+            tableBody.removeChild(row);
+        });
+    
+        // Reverse column's sort direction.
+        directions[index] = direction === "asc" ? "desc" : "asc";
+    
+        // Append new rows.
+        newRows.forEach( newRow => {
+            tableBody.appendChild(newRow);
+        });
+    };
+    
+    // Add sorting by click to each header.
+    headers.forEach( (header, index) => {
+        header.addEventListener("click", () => {
+            sortColumn(index);
+        });
+    });
+}
+sortTableByColumn();
 
-// Track sort directions
-const directions = Array.from(headers).map(function (header) {
-    return '';
-});
 
-// Transform the content of given cell in given column
-const transform = function (index, content) {
-    // Get the data type of column
-    const type = headers[index].getAttribute('data-type');
-    switch (type) {
-        case 'number':
-            return parseInt(content);
-        case 'string':
-        default:
-            return content;
-    }
-};
+/*
+   FUNCTION IN PROGRESS, DO NOT CALL.
+   This function works, essentially, but is not compatible with column sorting.
+*/
+/*
+function sortRows() {
+    let index = 2;
+    const direction = directions[index] || "desc";
+    const multiplier = direction === "asc" ? 1 : -1;
 
-const sortColumn = function (index) {
-    // Get the current direction
-    const direction = directions[index] || 'desc';
-
-    // A factor based on the direction
-    const multiplier = direction === 'asc' ? 1 : -1;
-
-    const newRows = Array.from(rows);
-
-    newRows.sort(function (rowA, rowB) {
-        const cellA = rowA.querySelectorAll('td')[index].innerHTML;
-        const cellB = rowB.querySelectorAll('td')[index].innerHTML;
-
-        const a = transform(index, cellA);
-        const b = transform(index, cellB);
-
-        switch (true) {
-            case a > b:
-                return 1 * multiplier;
-            case a < b:
-                return -1 * multiplier;
-            case a === b:
-                return 0;
-        }
+    // Numeric data from row to sort by.
+    const baseRow = Array.from(rows[index].querySelectorAll("td")).map( x => {
+        return Number(x.innerHTML);
     });
 
-    // Remove old rows
-    [].forEach.call(rows, function (row) {
-        tableBody.removeChild(row);
+    // Ordered indices of baseRow.
+    const perm = Array.from(Array(baseRow.length).keys()).sort( (a, b) => {
+        return multiplier * (baseRow[a] > baseRow[b] ? 1 : baseRow[a] < baseRow[b] ? -1 : 0);
     });
 
-    // Reverse the direction
-    directions[index] = direction === 'asc' ? 'desc' : 'asc';
+    let newRows = [];
+    rows.forEach( tr => {
+        let tds = tr.querySelectorAll("td"); // Node list of tds in current tr.
+        let newtds = Array.from(tds).map( (td, idx) => tds[perm[idx]] );
+        tableBody.removeChild(tr);
 
-    // Append new row
-    newRows.forEach(function (newRow) {
-        tableBody.appendChild(newRow);
+        let newRow = document.createElement("tr");
+        newtds.forEach( td => newRow.appendChild(td) );
+        newRows.push(newRow);
     });
-};
+    console.log(newRows);
 
-[].forEach.call(headers, function (header, index) {
-    header.addEventListener('click', function () {
-        sortColumn(index);
+    newRows.forEach( tr => {
+        tableBody.appendChild(tr);
     });
-});
+
+    console.log(table);
+}
+*/
