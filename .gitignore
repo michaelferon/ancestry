@@ -1,4 +1,6 @@
-.DS_Store
+# .gitignore
 
+.DS_Store
 test/
 data/michael-feron.txt
+__pycache__/

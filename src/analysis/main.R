@@ -1,7 +1,7 @@
 rm(list=ls())
 
 setwd('/Users/michaelferon/Projects/ancestry/')
-source('./src/R/functions.R')
+source('./src/analysis/functions.R')
 library(RColorBrewer) # Color schemes.
 library(colorspace)   # More color schemes.
 library(viridis)      # More color schemes.
