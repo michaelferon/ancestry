@@ -15,8 +15,8 @@ $(figs_pdf) : ./src/R/main.R ./src/R/functions.R $(data)
 
 .PHONY : database view connect
 database : $(data)
-	@mariadb ancestry -A < ./src/sql/init.sql && echo 'Database updated.'
+	@mariadb ancestry -A < ./src/database/init.sql && echo 'Database updated.'
 view :
 	@mariadb ancestry -A --execute="SELECT * FROM data;"
-connect:
+connect :
 	@mariadb ancestry -A
